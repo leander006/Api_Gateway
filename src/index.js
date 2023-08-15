@@ -4,7 +4,7 @@ const morgan = require("morgan");
 const app = express();
 const { createProxyMiddleware } = require("http-proxy-middleware");
 const rateLimit = require("express-rate-limit");
-const { PORT } = require("./config/serverConfig");
+const PORT = 3004;
 const limiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 15 minutes
   max: 5, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
@@ -33,7 +33,6 @@ app.post("/app", (req, res) => {
 app.get("/", (req, res) => {
   return res.json({ message: "success" });
 });
-
 
 app.listen(PORT, (req, res) => {
   console.log(`Server started on Port ${PORT}`);
